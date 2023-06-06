@@ -1,4 +1,4 @@
-# Crpto Rampage
+# Crypto Rampage
 
 A set of CTF cryptography challenges that I solved, with writeups and source
 code.
