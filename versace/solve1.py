@@ -1,16 +1,17 @@
 from primefac import *
 from Crypto.Util.number import *
 from sympy.ntheory import discrete_log
-import gmpy2
 
 def solve(c1, c2, c3, c4, n, fact, e, fi, th):
-    """Don't ask me how I found the math for that."""
+    # Reverse c = (k+1)^e * m
     p = fact
     e_inv = pow(e, -1, p - 1)
-    b = pow(c1, e_inv, p)
+    k = pow(c1, e_inv, p)
+    b = pow(k + 1, e, p)
     b2 = pow(b, -1, p)
-    sol = c4 * pow(b2 + 1, e, n) * pow(b + b2 + 2, -e, p) % p
+    sol = c4 * b2 % p
 
+    # Reverse c = fi^u * th^v * m
     c4 = sol
     u = discrete_log(p, c2, 5)
     v = discrete_log(p, c3, 13)
@@ -47,15 +48,6 @@ print(long_to_bytes(sol))
 sol = sol + (125 - sol) * fact * pow(fact, -1, 256)
 sol = sol % (fact * 256)
 fact *= 256
-
-"""
-# That's for the case we know the second factor
-sol2 = solve(c1, c2, c3, c4, n, second_factor, e, fi, th)
-
-sol = sol + (sol2 - sol) * fact * pow(fact, -1, q)
-sol = sol % (fact * q)
-fact *= q
-"""
 
 for i in range(100000000):
     m = long_to_bytes(sol)
