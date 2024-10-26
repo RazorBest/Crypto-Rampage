@@ -29,9 +29,9 @@ If we look at server.py, we see one class, `Line`, with an encrypt method, and
 some main code.
 
 In the main, we see the printed message, then a loop that repeats the following:
-    - Reads input from the user
-    - Encrypts the input
-    - If the encryption succeeds, it prints the encrypted message
+   - Reads input from the user
+   - Encrypts the input
+   - If the encryption succeeds, it prints the encrypted message
 
 The loop iterates a fixed number of times. After that, it prints the encrypted flag.
 
